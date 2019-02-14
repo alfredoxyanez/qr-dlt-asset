@@ -1,0 +1,6 @@
+#Python Imports
+pyzbar
+numpy
+web3
+qrcode
+pillow

@@ -1,0 +1,185 @@
+{
+  "PRIVATE_KEY": "YOUR_PRIVATE_KEY",
+  "INFURA_LINK": "YOUR_INFURA_LINK",
+  "CONTRACT_ADDRESS": "0xb99e6e2a23834bb983b76df9ffec8d8fb8e7c07c",
+  "ABI": [
+  	{
+  		"constant": false,
+  		"inputs": [
+  			{
+  				"name": "_id",
+  				"type": "bytes32"
+  			},
+  			{
+  				"name": "_location",
+  				"type": "string"
+  			},
+  			{
+  				"name": "_checker",
+  				"type": "address"
+  			}
+  		],
+  		"name": "checkIn",
+  		"outputs": [],
+  		"payable": false,
+  		"stateMutability": "nonpayable",
+  		"type": "function"
+  	},
+  	{
+  		"constant": false,
+  		"inputs": [
+  			{
+  				"name": "_id",
+  				"type": "bytes32"
+  			},
+  			{
+  				"name": "_location",
+  				"type": "string"
+  			}
+  		],
+  		"name": "createAsset",
+  		"outputs": [],
+  		"payable": false,
+  		"stateMutability": "nonpayable",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [
+  			{
+  				"name": "",
+  				"type": "uint256"
+  			}
+  		],
+  		"name": "allAssets",
+  		"outputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [
+  			{
+  				"name": "",
+  				"type": "uint256"
+  			}
+  		],
+  		"name": "allCheckIns",
+  		"outputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32"
+  			}
+  		],
+  		"name": "assetMap",
+  		"outputs": [
+  			{
+  				"name": "id",
+  				"type": "bytes32"
+  			},
+  			{
+  				"name": "creator",
+  				"type": "address"
+  			},
+  			{
+  				"name": "location",
+  				"type": "string"
+  			},
+  			{
+  				"name": "datetime",
+  				"type": "uint256"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32"
+  			}
+  		],
+  		"name": "checkInMap",
+  		"outputs": [
+  			{
+  				"name": "checker",
+  				"type": "address"
+  			},
+  			{
+  				"name": "location",
+  				"type": "string"
+  			},
+  			{
+  				"name": "datetime",
+  				"type": "uint256"
+  			},
+  			{
+  				"name": "assetId",
+  				"type": "bytes32"
+  			},
+  			{
+  				"name": "checkId",
+  				"type": "bytes32"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [
+  			{
+  				"name": "_id",
+  				"type": "bytes32"
+  			}
+  		],
+  		"name": "getCheckIns",
+  		"outputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32[]"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	},
+  	{
+  		"constant": true,
+  		"inputs": [],
+  		"name": "random",
+  		"outputs": [
+  			{
+  				"name": "",
+  				"type": "bytes32"
+  			}
+  		],
+  		"payable": false,
+  		"stateMutability": "view",
+  		"type": "function"
+  	}
+  ]
+
+}
