@@ -59,7 +59,6 @@ def check_signature(r, s, pk_string, data):
 
 
 if __name__ == "__main__":
-
     # Get parameters from parameter file
     path = os.path.join(os.path.dirname(__file__),'parameters.json' )
     with open(path) as f:
