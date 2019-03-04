@@ -1,3 +1,3 @@
 # QR Code Asset Tracking
 
-## This project will
+## This project will teach you
