@@ -52,7 +52,10 @@ ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False,
                            pixel_order=ORDER)
 
-
+def decode(im) :
+    # Find barcodes and QR codes
+    decodedObjects = pyzbar.decode(im)
+    return decodedObjects
 
 
 ## NeoPixel Functions
