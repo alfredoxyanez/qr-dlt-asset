@@ -137,10 +137,10 @@ while(cap.isOpened()):
             nonce = n
 
         barCode = str(decodedObject.data)
-        cv2.putText(frame, barCode, (x, y), font, 1, (0,255,255), 2, cv2.LINE_AA)
+        # cv2.putText(frame, barCode, (x, y), font, 1, (0,255,255), 2, cv2.LINE_AA)
 
     # Display the resulting frame
-    cv2.imshow('frame',frame)
+    # cv2.imshow('frame',frame)
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
