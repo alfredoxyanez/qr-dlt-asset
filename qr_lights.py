@@ -156,13 +156,16 @@ def white_cycle(wait):
             pixels[i] = brightness
         pixels.show()
         time.sleep(wait)
-        
+
 def scanned(wait):
     pixels.fill((0, 0, 0))
+    pixels.show()
     time.sleep(wait)
     pixels.fill((0, 255, 0))
+    pixels.show()
     time.sleep(wait)
     pixels.fill((0, 0, 0))
+    pixels.show()
     time.sleep(1)
 
 
@@ -170,7 +173,7 @@ def scanned(wait):
 
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-
+white = (0,0,0)
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -178,7 +181,9 @@ while(cap.isOpened()):
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     decodedObjects = decode(im)
-    white_cycle(.5)
+    white = ((white[0]+1) %255, (white[1]+1) %255, (white[2]+1) %255)
+    pixels.fill(white)
+    pixels.show()
 
     for decodedObject in decodedObjects:
         points = decodedObject.polygon
