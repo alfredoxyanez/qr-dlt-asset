@@ -156,6 +156,7 @@ def white_cycle(wait):
             pixels[i] = brightness
         pixels.show()
         time.sleep(wait)
+        
 def scanned(wait):
     pixels.fill((0, 0, 0))
     time.sleep(wait)
@@ -177,7 +178,7 @@ while(cap.isOpened()):
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
     decodedObjects = decode(im)
-    white_cycle(0.001)
+    white_cycle(.5)
 
     for decodedObject in decodedObjects:
         points = decodedObject.polygon
