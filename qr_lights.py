@@ -144,12 +144,14 @@ while(cap.isOpened()):
             pixels.show()
             print('i',n)
             break
-        elif data["id"] in addresses.keys() and n - data["id"] > 5 :
-            print('e', n)
-            scanned(.25, 2)
-            # Reset to White
-            pixels.fill(white)
-            pixels.show()
+        elif data["id"] in addresses.keys() :
+            print( n , data["id"])
+            if n - data["id"] > 5:
+                print('e', n)
+                scanned(.25, 2)
+                # Reset to White
+                pixels.fill(white)
+                pixels.show()
         n = n + 1
     # Display the resulting frame
     key = cv2.waitKey(1)
