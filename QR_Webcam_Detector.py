@@ -13,11 +13,13 @@ import json
 import os
 import web3
 from web3.auto import w3
+from threading import Thread
 from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
 
 # get the webcam:
 cap = cv2.VideoCapture(0)
+threads = []
 
 cap.set(3,640)
 cap.set(4,480)
@@ -52,7 +54,9 @@ w3.middleware_stack.inject(geth_poa_middleware, layer=0)
 # Make default account
 private_key = parameters["PRIVATE_KEY"]
 w3.eth.defaultAccount = w3.eth.account.privateKeyToAccount(private_key)
-
+balance = w3.eth.getBalance(w3.eth.defaultAccount.address)
+balance = w3.fromWei(balance,'ether')
+print(w3.eth.defaultAccount.address, balance)
 # Get Initial Nonce
 nonce = int(w3.eth.getTransactionCount(w3.eth.defaultAccount.address))
 
@@ -84,7 +88,7 @@ def check_in(id, nonce, location):
     print("Sending transaction")
     deploy_txn = asset_contract.functions.checkIn(id, location, w3.eth.defaultAccount.address ).buildTransaction({
     'nonce': nonce,
-    'gas': 2000000,
+    'gas': 1000000,
     'gasPrice': 2345678976543,
     })
     signed = w3.eth.account.signTransaction(deploy_txn, private_key)
@@ -98,10 +102,10 @@ def decode(im) :
 
 
 font = cv2.FONT_HERSHEY_SIMPLEX
-
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
+    # print(cap.get(5))
     # Our operations on the frame come here
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
@@ -131,7 +135,9 @@ while(cap.isOpened()):
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
+            print(data)
             print('Type : ', decodedObject.type)
+            print(data["id"])
             addresses[data["id"]]= True
             n = check_in(data["id"], nonce, LOCATION)
             nonce = n

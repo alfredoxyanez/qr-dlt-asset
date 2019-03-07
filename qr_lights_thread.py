@@ -15,6 +15,7 @@ import web3
 import time
 import board
 import neopixel
+from threading import Thread
 from web3.auto import w3
 from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
@@ -34,6 +35,11 @@ cap.set(4,768)
 
 # cap.set(cv2.CAP_PROP_FPS,30)
 time.sleep(2)
+
+
+class MyThread(Thread):
+    def run(self):
+        ret, frame = cap.read()
 
 addresses = {}
 
@@ -100,19 +106,28 @@ def scanned(wait):
     pixels.show()
     time.sleep(1)
 
+def pulse_color(color, pix):
+    pix.fill(color)
+    pix.show()
+
 
 white = (0,0,0)
+ret, frame = cap.read()
 while(cap.isOpened()):
     # Capture frame-by-frame
-    ret, frame = cap.read()
+    thread = MyThread()
+    thread.start()
+    threads.append(thread)
+    # ret, frame = cap.read()
     # Our operations on the frame come here
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     print(cap.get(5))
     decodedObjects = decode(im)
     white = ((white[0]+10) %255, (white[1]+10) %255, (white[2]+10) %255)
 
-    pixels.fill(white)
-    pixels.show()
+
+    # pixels.fill(white)
+    # pixels.show()
 
     for decodedObject in decodedObjects:
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
