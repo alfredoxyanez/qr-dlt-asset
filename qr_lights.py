@@ -31,6 +31,8 @@ cap.set(4,768)
 #640.0 x 480.0
 #1024.0 x 768.0
 #1280.0 x 1024.0
+
+cap.set(cv2.CAP_PROP_FPS,30)
 time.sleep(2)
 
 addresses = {}
@@ -104,7 +106,7 @@ while(cap.isOpened()):
     ret, frame = cap.read()
     # Our operations on the frame come here
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-
+    print(cap.get(5))
     decodedObjects = decode(im)
     white = ((white[0]+10) %255, (white[1]+10) %255, (white[2]+10) %255)
     pixels.fill(white)
