@@ -137,20 +137,19 @@ while(cap.isOpened()):
         if data["id"] not in addresses.keys():
             scanning(.25, 2)
             print('Type : ', decodedObject.type)
-            addresses[data["id"]]= True
+            addresses[data["id"]]= n
             m_rainbow_cycle(.005,2)
             # Reset to White
             pixels.fill(white)
             pixels.show()
             print('i',n)
             break
-        elif data["id"] in addresses.keys():
+        elif data["id"] in addresses.keys() and n - data["id"] > 5 :
             print('e', n)
             scanned(.25, 2)
             # Reset to White
             pixels.fill(white)
             pixels.show()
-
         n = n + 1
     # Display the resulting frame
     key = cv2.waitKey(1)
