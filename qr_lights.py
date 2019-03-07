@@ -33,7 +33,7 @@ cap.set(4,768)
 #1280.0 x 1024.0
 
 # cap.set(cv2.CAP_PROP_FPS,30)
-time.sleep(2)
+#time.sleep(2)
 
 addresses = {}
 
@@ -92,12 +92,12 @@ def rainbow_cycle(wait):
         time.sleep(wait)
 
 def m_rainbow_cycle(wait, times):
-    for _ in times:
+    for _ in range(times):
         rainbow_cycle(wait)
 
 
 def scanning(wait, times):
-    for _ in times:
+    for _ in range(times):
         pixels.fill((0, 255, 0))
         pixels.show()
         time.sleep(wait)
@@ -107,7 +107,7 @@ def scanning(wait, times):
 
 
 def scanned(wait, times):
-    for _ in times:
+    for _ in range(times):
         pixels.fill((255, 75, 0))
         pixels.show()
         time.sleep(wait)
@@ -121,6 +121,7 @@ pixels.fill(white)
 pixels.show()
 
 #Start Camera Cycle
+n = 0
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -141,13 +142,16 @@ while(cap.isOpened()):
             # Reset to White
             pixels.fill(white)
             pixels.show()
-        else:
+            print('i',n)
+            break
+        elif data["id"] in addresses.keys():
+            print('e', n)
             scanned(.25, 2)
             # Reset to White
             pixels.fill(white)
             pixels.show()
 
-
+        n = n + 1
     # Display the resulting frame
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
