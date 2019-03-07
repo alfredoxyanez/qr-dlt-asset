@@ -21,7 +21,7 @@ from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
 
 # get the webcam:
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(-1)
 
 cap.set(3,1024)
 cap.set(4,768)
@@ -42,7 +42,7 @@ class MyThread(Thread):
         ret, frame = cap.read()
 
 addresses = {}
-
+threads = []
 
 
 ## neopixel
