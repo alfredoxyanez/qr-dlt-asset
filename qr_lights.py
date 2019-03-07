@@ -91,17 +91,36 @@ def rainbow_cycle(wait):
         pixels.show()
         time.sleep(wait)
 
-
-def scanned(wait):
-    pixels.fill((0, 255, 0))
-    pixels.show()
-    time.sleep(wait)
-    pixels.fill((0, 0, 0))
-    pixels.show()
-    time.sleep(1)
+def m_rainbow_cycle(wait, times):
+    for _ in times:
+        rainbow_cycle(wait)
 
 
+def scanning(wait, times):
+    for _ in times:
+        pixels.fill((0, 255, 0))
+        pixels.show()
+        time.sleep(wait)
+        pixels.fill((0, 0, 0))
+        pixels.show()
+        time.sleep(wait)
+
+
+def scanned(wait, times):
+    for _ in times:
+        pixels.fill((255, 75, 0))
+        pixels.show()
+        time.sleep(wait)
+        pixels.fill((0, 0, 0))
+        pixels.show()
+        time.sleep(wait)
+
+#Clear Lights
 white = (0,0,0)
+pixels.fill(white)
+pixels.show()
+
+#Start Camera Cycle
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -109,19 +128,24 @@ while(cap.isOpened()):
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     print(cap.get(5))
     decodedObjects = decode(im)
-    white = ((white[0]+10) %255, (white[1]+10) %255, (white[2]+10) %255)
 
-    pixels.fill(white)
-    pixels.show()
 
     for decodedObject in decodedObjects:
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
-            scanned(1)
+            scanning(.25, 2)
             print('Type : ', decodedObject.type)
             addresses[data["id"]]= True
-            rainbow_cycle(.005)
+            m_rainbow_cycle(.005,2)
+            # Reset to White
+            pixels.fill(white)
+            pixels.show()
+        else:
+            scanned(.25, 2)
+            # Reset to White
+            pixels.fill(white)
+            pixels.show()
 
 
     # Display the resulting frame

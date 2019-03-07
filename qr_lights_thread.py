@@ -24,10 +24,10 @@ from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
 
 # get the webcam:
-cap = cv2.VideoCapture(-1)
-
-cap.set(3,1024)
-cap.set(4,768)
+# cap = cv2.VideoCapture(-1)
+#
+# cap.set(3,1024)
+# cap.set(4,768)
 #160.0 x 120.0
 #176.0 x 144.0
 #320.0 x 240.0
