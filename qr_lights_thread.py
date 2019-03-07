@@ -15,7 +15,10 @@ import web3
 import time
 import board
 import neopixel
-from threading import Thread
+from imutils.video import WebcamVideoStream
+from imutils.video import FPS
+import argparse
+import imutils
 from web3.auto import w3
 from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
@@ -112,16 +115,16 @@ def pulse_color(color, pix):
 
 
 white = (0,0,0)
-ret, frame = cap.read()
+
+
+vs = WebcamVideoStream(src=0).start()
+fps = FPS().start()
 while(cap.isOpened()):
     # Capture frame-by-frame
-    thread = MyThread()
-    thread.start()
-    threads.append(thread)
-    # ret, frame = cap.read()
-    # Our operations on the frame come here
+    frame = vs.read()
+	frame = imutils.resize(frame, width=400)
     im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    print(cap.get(5))
+
     decodedObjects = decode(im)
     white = ((white[0]+10) %255, (white[1]+10) %255, (white[2]+10) %255)
 
@@ -140,12 +143,13 @@ while(cap.isOpened()):
 
 
     # Display the resulting frame
+    fps.update()
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
         break
     elif key & 0xFF == ord('s'): # wait for 's' key to save
         cv2.imwrite('Capture.png', frame)
-
+fps.stop()
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
