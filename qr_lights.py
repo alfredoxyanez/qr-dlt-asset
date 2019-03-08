@@ -153,7 +153,7 @@ while(cap.isOpened()):
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
-            circle(.01,(255,0,0))
+            circle(.01,(0,255,0))
             print('Type : ', decodedObject.type)
             addresses[data["id"]]= n
             m_rainbow_cycle(.005,2)
