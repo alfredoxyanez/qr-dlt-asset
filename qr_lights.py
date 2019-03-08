@@ -153,13 +153,14 @@ while(cap.isOpened()):
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
-            circle(.005,(0,255,0))
-            print('Type : ', decodedObject.type)
-            addresses[data["id"]] = n
-            m_rainbow_cycle(.005,2)
-            # Reset to White
+            m_rainbow_cycle(.005,1)
             pixels.fill(white)
             pixels.show()
+            print('Type : ', decodedObject.type)
+            addresses[data["id"]] = n
+            circle(.01,(0,255,0))
+            # Reset to White
+
             print('i',n)
             break
         elif data["id"] in addresses.keys() :
