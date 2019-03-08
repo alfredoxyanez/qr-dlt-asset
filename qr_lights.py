@@ -163,7 +163,7 @@ while(cap.isOpened()):
             print('i',n)
             break
         elif data["id"] in addresses.keys() :
-            print( n , data["id"])
+            print( n , addresses[data["id"]])
             if n - addresses[data["id"]] > 3:
                 print('e', n)
                 scanned(.25, 2)
