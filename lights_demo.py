@@ -1,3 +1,4 @@
+import board
 import neopixel
 import time
 
