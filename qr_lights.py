@@ -155,7 +155,7 @@ while(cap.isOpened()):
         if data["id"] not in addresses.keys():
             circle(.005,(0,255,0))
             print('Type : ', decodedObject.type)
-            addresses[data["id"]]= n
+            addresses[data["id"]] = n
             m_rainbow_cycle(.005,2)
             # Reset to White
             pixels.fill(white)
