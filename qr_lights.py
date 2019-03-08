@@ -115,6 +115,23 @@ def scanned(wait, times):
         pixels.show()
         time.sleep(wait)
 
+def circle(delay, to_color, from_color= (0,0,0)):
+    n = num_pixels
+    for i in range(num_pixels):
+        for j in range(n):
+            if j == n-1:
+                pixels[j] = to_color
+            elif j >0:
+                pixels[j] = to_color
+                pixels[j-1] = from_color
+            else:
+                pixels[j] = to_color
+            pixels.show()
+            time.sleep(delay)
+        n = n-1
+    time.sleep(.5)
+    pixels.fill(from_color)
+
 #Clear Lights
 white = (0,0,0)
 pixels.fill(white)
@@ -136,7 +153,7 @@ while(cap.isOpened()):
         my_json = decodedObject.data.decode('utf8').replace("'", '"')
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
-            scanning(.25, 2)
+            circle(.01,(255,0,0))
             print('Type : ', decodedObject.type)
             addresses[data["id"]]= n
             m_rainbow_cycle(.005,2)
