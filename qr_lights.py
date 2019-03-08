@@ -147,7 +147,7 @@ while(cap.isOpened()):
             break
         elif data["id"] in addresses.keys() :
             print( n , data["id"])
-            if n - data["id"] > 5:
+            if n - addresses[data["id"]] > 3:
                 print('e', n)
                 scanned(.25, 2)
                 # Reset to White
