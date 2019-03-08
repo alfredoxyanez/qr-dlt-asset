@@ -122,6 +122,7 @@ pixels.show()
 
 #Start Camera Cycle
 n = 0
+print("here")
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -146,7 +147,7 @@ while(cap.isOpened()):
             break
         elif data["id"] in addresses.keys() :
             print( n , data["id"])
-            if n - data["id"] > 5:
+            if n - addresses[data["id"]] > 5:
                 print('e', n)
                 scanned(.25, 2)
                 # Reset to White
