@@ -132,7 +132,8 @@ def circle(delay, to_color, from_color= (0,0,0)):
             time.sleep(delay)
         n = n-1
     time.sleep(.5)
-    pixels.fill((0,0,0))
+    pixels.fill(from_color)
+    pixels.show()
 
 #Clear Lights
 white = (0,0,0)
