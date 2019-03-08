@@ -94,6 +94,8 @@ def rainbow_cycle(wait):
 def m_rainbow_cycle(wait, times):
     for _ in range(times):
         rainbow_cycle(wait)
+    pixels.fill((0,0,0))
+    pixels.show()
 
 
 def scanning(wait, times):
@@ -154,13 +156,9 @@ while(cap.isOpened()):
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
             m_rainbow_cycle(.005,1)
-            pixels.fill(white)
-            pixels.show()
             print('Type : ', decodedObject.type)
             addresses[data["id"]] = n
             circle(.01,(0,255,0))
-            # Reset to White
-
             print('i',n)
             break
         elif data["id"] in addresses.keys() :
