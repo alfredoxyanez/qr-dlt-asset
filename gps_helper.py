@@ -9,9 +9,10 @@ def get_gps():
     result = {}
     while True:
         if report['class'] == 'TPV':
-            result['time'] = report.time
-            result['lat'] = report.lat
-            result['lon'] = report.lon
-            break
+            if hasattr(report, 'time') and hasattr(report, 'lat') and hasattr(report, 'lon'):
+                result['time'] = report.time
+                result['lat'] = report.lat
+                result['lon'] = report.lon
+                break
         report = session.next()
     return result
