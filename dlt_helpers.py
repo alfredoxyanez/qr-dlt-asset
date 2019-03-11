@@ -26,6 +26,7 @@ def wheel(pos):
 
 
 def rainbow_cycle(pix, wait):
+    pixel_index = len(pix)
     for j in range(255):
         for i in range(num_pixels):
             pixel_index = (i * 256 // num_pixels) + j
@@ -34,7 +35,6 @@ def rainbow_cycle(pix, wait):
         time.sleep(wait)
 
 def m_rainbow_cycle(pix, wait, times):
-    print(pix)
     for _ in range(times):
         rainbow_cycle(pix, wait)
     pix.fill((0,0,0))
