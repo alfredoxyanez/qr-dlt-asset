@@ -10,7 +10,9 @@ import busio
 import board
 import neopixel
 import adafruit_bme280
+from gps_helper import *
 from dlt_helpers import *
+
 
 # get the webcam:
 cap = cv2.VideoCapture(0)
@@ -63,6 +65,8 @@ while(cap.isOpened()):
             addresses[data["id"]] = n
             env= get_environment(bme280)
             print(env)
+            gps_c = get_gps()
+            print(gps)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :
             print( n , addresses[data["id"]])
