@@ -52,7 +52,6 @@ def decode(im) :
 clear_lights(pixels,(0,0,0))
 
 #Start Camera Cycle
-n = 0
 while(cap.isOpened()):
     # Capture frame-by-frame
     ret, frame = cap.read()
@@ -67,19 +66,17 @@ while(cap.isOpened()):
         data = json.loads(my_json)
         if data["id"] not in addresses.keys():
             m_rainbow_cycle(pixels, .005,1)
-            addresses[data["id"]] = n
+            addresses[data["id"]] = time.time()
             env= get_environment(bme280)
             print(env)
             gps_c = get_gps(session)
             print(gps_c)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :
-            print( n , addresses[data["id"]])
-            if n - addresses[data["id"]] > 3:
+            if time.time() - addresses[data["id"]] > 3:
                 scanned(pixels, .25, 2)
                 clear_lights(pixels,(0,0,0))
 
-        n = n + 1
     # Display the resulting frame
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
