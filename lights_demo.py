@@ -31,5 +31,6 @@ def circle(delay, to_color, from_color= (0,0,0)):
         n = n-1
     time.sleep(1)
     pixels.fill(from_color)
+    pixels.show()
 
-circle(.01,(255,0,0))
+circle(.005,(255,0,0))
