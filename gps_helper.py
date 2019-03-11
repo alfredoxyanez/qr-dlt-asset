@@ -15,4 +15,3 @@ def get_gps():
             break
         report = session.next()
     return result
-import gps
