@@ -5,11 +5,11 @@ import cv2
 import time
 import json
 import os
-import web3
 import time
+import busio
 import board
 import neopixel
-from web3.auto import w3
+import adafruit_bme280
 from dlt_helpers import *
 
 # get the webcam:
@@ -32,6 +32,10 @@ num_pixels = 24
 ORDER = neopixel.GRB
 pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=False,
                            pixel_order=ORDER)
+
+# BME280 Sensor
+i2c = busio.I2C(board.SCL, board.SDA)
+bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
 
 def decode(im) :
     # Find barcodes and QR codes
@@ -57,6 +61,8 @@ while(cap.isOpened()):
         if data["id"] not in addresses.keys():
             m_rainbow_cycle(pixels, .005,1)
             addresses[data["id"]] = n
+            env= get_environment(bme280)
+            print(env)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :
             print( n , addresses[data["id"]])

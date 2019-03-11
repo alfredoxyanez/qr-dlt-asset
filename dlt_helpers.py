@@ -80,3 +80,6 @@ def circle(pix, delay, to_color, from_color= (0,0,0)):
     time.sleep(.5)
     pix.fill(from_color)
     pix.show()
+
+def get_environment(sensor):
+    return (sensor.temperature,sensor.humidity, sensor.pressure, sensor.altitude)
