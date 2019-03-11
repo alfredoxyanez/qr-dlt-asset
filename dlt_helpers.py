@@ -34,6 +34,7 @@ def rainbow_cycle(pix, wait):
         time.sleep(wait)
 
 def m_rainbow_cycle(pix, wait, times):
+    print(pix)
     for _ in range(times):
         rainbow_cycle(pix, wait)
     pix.fill((0,0,0))
