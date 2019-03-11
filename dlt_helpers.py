@@ -1,3 +1,4 @@
+import time
 def clear_lights(pix, color=(0,0,0)):
     pix.fill(color)
     pix.show()
