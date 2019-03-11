@@ -10,7 +10,6 @@ import busio
 import board
 import neopixel
 import adafruit_bme280
-from gps_helper import *
 from dlt_helpers import *
 
 
@@ -39,6 +38,12 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=Fal
 i2c = busio.I2C(board.SCL, board.SDA)
 bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
 
+# GPS
+
+# Listen on port 2947 (gpsd) of localhost
+session = gps.gps("localhost", "2947")
+session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
+
 def decode(im) :
     # Find barcodes and QR codes
     decodedObjects = pyzbar.decode(im)
@@ -65,7 +70,7 @@ while(cap.isOpened()):
             addresses[data["id"]] = n
             env= get_environment(bme280)
             print(env)
-            gps_c = get_gps()
+            gps_c = get_gps(session)
             print(gps_c)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :

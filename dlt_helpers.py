@@ -1,3 +1,4 @@
+import gps
 import time
 
 def clear_lights(pix, color=(0,0,0)):
@@ -82,4 +83,22 @@ def circle(pix, delay, to_color, from_color= (0,0,0)):
     pix.show()
 
 def get_environment(sensor):
-    return (sensor.temperature,sensor.humidity, sensor.pressure)
+    result = {}
+    result['temperature'] = sensor.temperature
+    result['humidity'] = sensor.humidity
+    result['pressure'] = sensor.pressure
+    return result
+
+
+def get_gps(session):
+    report = session.next()
+    result = {}
+    while True:
+        if report['class'] == 'TPV':
+            if hasattr(report, 'time') and hasattr(report, 'lat') and hasattr(report, 'lon'):
+                result['time'] = report.time
+                result['lat'] = report.lat
+                result['lon'] = report.lon
+                break
+        report = session.next()
+    return result
