@@ -36,7 +36,6 @@ pixels = neopixel.NeoPixel(pixel_pin, num_pixels, brightness=0.2, auto_write=Fal
 # BME280 Sensor
 i2c = busio.I2C(board.SCL, board.SDA)
 bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
-bme280.sea_level_pressure = 1015.91
 
 def decode(im) :
     # Find barcodes and QR codes
