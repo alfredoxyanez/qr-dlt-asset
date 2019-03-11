@@ -16,8 +16,8 @@ from dlt_helpers import *
 # get the webcam:
 cap = cv2.VideoCapture(0)
 
-cap.set(3,1024)
-cap.set(4,768)
+cap.set(3,640)
+cap.set(4,480)
 
 # Address that have been scanned
 addresses = {}
@@ -73,7 +73,7 @@ while(cap.isOpened()):
             print(gps_c)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :
-            if time.time() - addresses[data["id"]] > 3:
+            if time.time() - addresses[data["id"]]  > 10:
                 scanned(pixels, .25, 2)
                 clear_lights(pixels,(0,0,0))
 
