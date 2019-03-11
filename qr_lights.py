@@ -159,12 +159,9 @@ while(cap.isOpened()):
             print('Type : ', decodedObject.type)
             addresses[data["id"]] = time.time()
             circle(.01,(0,255,0))
-            print('i',n)
             break
         elif data["id"] in addresses.keys() :
-            print( n , addresses[data["id"]])
             if time.time() - addresses[data["id"]]  > 3:
-                print('e', n)
                 scanned(.25, 2)
                 # Reset to White
                 pixels.fill(white)
