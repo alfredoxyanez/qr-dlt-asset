@@ -13,4 +13,6 @@ def get_gps():
             result['lat'] = report.lat
             result['lon'] = report.lon
             break
+        report = session.next()
     return result
+import gps
