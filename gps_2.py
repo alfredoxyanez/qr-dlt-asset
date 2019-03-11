@@ -1,10 +1,15 @@
-from gps3 import gps3
-gps_socket = gps3.GPSDSocket()
-data_stream = gps3.DataStream()
-gps_socket.connect()
-gps_socket.watch()
-for new_data in gps_socket:
-    if new_data:
-        data_stream.unpack(new_data)
-        print('Altitude = ', data_stream.TPV['alt'])
-        print('Latitude = ', data_stream.TPV['lat'])
+import gps
+
+# Listen on port 2947 (gpsd) of localhost
+session = gps.gps("localhost", "2947")
+session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
+
+
+report = session.next()
+result = {}
+while
+while !report['class'] == 'TPV':
+    result['time'] = report.time
+    result['lat'] = report.lat
+    result['lon'] = report.lon
+    return result
