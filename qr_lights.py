@@ -161,7 +161,7 @@ while(cap.isOpened()):
             circle(.01,(0,255,0))
             break
         elif data["id"] in addresses.keys() :
-            if time.time() - addresses[data["id"]]  > 3:
+            if time.time() - addresses[data["id"]]  > 10:
                 scanned(.25, 2)
                 # Reset to White
                 pixels.fill(white)
