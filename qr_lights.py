@@ -141,7 +141,6 @@ pixels.fill(white)
 pixels.show()
 
 #Start Camera Cycle
-n = 0
 print("here")
 while(cap.isOpened()):
     # Capture frame-by-frame
@@ -158,19 +157,18 @@ while(cap.isOpened()):
         if data["id"] not in addresses.keys():
             m_rainbow_cycle(.005,1)
             print('Type : ', decodedObject.type)
-            addresses[data["id"]] = n
+            addresses[data["id"]] = time.time()
             circle(.01,(0,255,0))
             print('i',n)
             break
         elif data["id"] in addresses.keys() :
             print( n , addresses[data["id"]])
-            if n - addresses[data["id"]] > 3:
+            if time.time() - addresses[data["id"]]  > 3:
                 print('e', n)
                 scanned(.25, 2)
                 # Reset to White
                 pixels.fill(white)
                 pixels.show()
-        n = n + 1
     # Display the resulting frame
     key = cv2.waitKey(1)
     if key & 0xFF == ord('q'):
