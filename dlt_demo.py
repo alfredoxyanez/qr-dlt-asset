@@ -66,7 +66,7 @@ while(cap.isOpened()):
             env= get_environment(bme280)
             print(env)
             gps_c = get_gps()
-            print(gps)
+            print(gps_c)
             circle(pixels, .01,(0,255,0))
         elif data["id"] in addresses.keys() :
             print( n , addresses[data["id"]])
