@@ -7,7 +7,6 @@ session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 
 report = session.next()
 result = {}
-while
 while !report['class'] == 'TPV':
     result['time'] = report.time
     result['lat'] = report.lat
