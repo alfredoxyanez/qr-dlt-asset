@@ -1,8 +1,9 @@
 import board
 import busio
+import time
 import adafruit_bme280
 i2c = busio.I2C(board.SCL, board.SDA)
-bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c)
+bme280 = adafruit_bme280.Adafruit_BME280_I2C(i2c,0x76)
 
 
 # change this to match the location's pressure (hPa) at sea level
