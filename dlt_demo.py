@@ -61,7 +61,7 @@ while(cap.isOpened()):
         elif data["id"] in addresses.keys() :
             print( n , addresses[data["id"]])
             if n - addresses[data["id"]] > 3:
-                scanned(.25, 2)
+                scanned(pixels, .25, 2)
                 clear_lights(pixels,(0,0,0))
 
         n = n + 1
