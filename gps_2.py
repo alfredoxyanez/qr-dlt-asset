@@ -7,8 +7,10 @@ session.stream(gps.WATCH_ENABLE | gps.WATCH_NEWSTYLE)
 
 report = session.next()
 result = {}
-while not report['class'] == 'TPV':
-    result['time'] = report.time
-    result['lat'] = report.lat
-    result['lon'] = report.lon
-    return result
+while True:
+    if report['class'] == 'TPV':
+        result['time'] = report.time
+        result['lat'] = report.lat
+        result['lon'] = report.lon
+        break
+return result
